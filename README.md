@@ -48,10 +48,11 @@ Please provide a short code review of the base `master` branch:
 - I like that you need to test/build only the code that has been affected or changed.
 - Test cases are implemented using Jest which makes them run so much faster. 
 2. What would you change?
-- Fixed the test cases and errors
-- Removed ununsed imports and added interfaces instead of using type "any"
+ I would 
+    - Fix the test cases and errors ( which are done )
+    - Remove ununsed imports and add interfaces instead of using type "any" (which are also done)
 3. Are there any code smells or problematic implementations?
-- The test cases were failing - which I have fixed as part of Task 2
+- The test cases were failing - which I have fixed. There were imports/providers missing in the files. In the app component spec file there were test cases written for code that was not present. 
 - The chart component was not loading . I've fixed this.
 - There were unused imports which I have removed
 
