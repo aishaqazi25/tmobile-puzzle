@@ -49,12 +49,12 @@ Please provide a short code review of the base `master` branch:
 - Test cases are implemented using Jest which makes them run so much faster. 
 2. What would you change?
  I would 
-    - Fix the test cases and errors ( which are done )
-    - Remove ununsed imports and add interfaces instead of using type "any" (which are also done)
+    - Fix the test cases and errors ( which I've done as part of this PR )
+    - Remove ununsed imports and add interfaces instead of using type "any" (which I've also done)
 3. Are there any code smells or problematic implementations?
-- The test cases were failing - which I have fixed. There were imports/providers missing in the files. In the app component spec file there were test cases written for code that was not present. 
+- The test cases were failing - which I have fixed. There were imports/providers missing in the files. In the app component spec file, there were test cases written for code that was not present. I have added that code.
 - The chart component was not loading . I've fixed this.
-- There were unused imports which I have removed
+- There were unused imports which I have removed.
 
 > Make a PR to fix at least one of the issues that you identify
 
