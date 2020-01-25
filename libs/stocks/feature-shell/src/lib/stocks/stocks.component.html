@@ -17,19 +17,72 @@
     </mat-error>
   </mat-form-field>
 
+  <!--
+    <mat-form-field>
+      <mat-label>Favorite time period</mat-label>
+      <mat-select formControlName="period">
+        <mat-option
+          *ngFor="let timePeriod of timePeriods"
+          [value]="timePeriod.value"
+        >
+          {{ timePeriod.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  -->
   <mat-form-field>
-    <mat-label>Favorite time period</mat-label>
-    <mat-select formControlName="period">
-      <mat-option
-        *ngFor="let timePeriod of timePeriods"
-        [value]="timePeriod.value"
-      >
-        {{ timePeriod.viewValue }}
-      </mat-option>
-    </mat-select>
+    <input
+      matInput
+      formControlName="startDate"
+      [matDatepicker]="startDatepicker"
+      [max]="maxDate"
+      placeholder="From"
+      (click)="startDatepicker.open()"
+    />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="startDatepicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #startDatepicker></mat-datepicker>
+    <mat-error
+      ><span
+        *ngIf="
+          !stockPickerForm.get('startDate').valid &&
+          stockPickerForm.get('startDate').touched
+        "
+        >Please enter a start Date
+      </span>
+    </mat-error>
   </mat-form-field>
 
-  <button (click)="fetchQuote()" mat-raised-button>Go</button>
+  <mat-form-field>
+    <input
+      matInput
+      formControlName="endDate"
+      [matDatepicker]="endDatepicker"
+      [min]="stockPickerForm.value.startDate"
+      [max]="today"
+      placeholder="To"
+      (click)="endDatepicker.open()"
+    />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="endDatepicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #endDatepicker></mat-datepicker>
+    <mat-error
+      ><span
+        *ngIf="
+          !stockPickerForm.get('endDate').valid &&
+          stockPickerForm.get('endDate').touched
+        "
+        >Please enter an end Date</span
+      >
+    </mat-error>
+  </mat-form-field>
+  <!--
+    <button (click)="fetchQuote()" [disabled]="!stockPickerForm.valid" mat-raised-button>Go</button>
+  -->
 </form>
 
 <coding-challenge-chart [data$]="quotes$"></coding-challenge-chart>

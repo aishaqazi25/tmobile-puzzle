@@ -1,9 +1,10 @@
 import { PriceQueryResponse, PriceQuery } from './price-query.type';
 import { map, pick } from 'lodash-es';
 import { parse } from 'date-fns';
+import * as moment from 'moment';
 
 export function transformPriceQueryResponse(
-  response: PriceQueryResponse[]
+  response: PriceQueryResponse[], startDate: Date, endDate: Date
 ): PriceQuery[] {
   return map(
     response,
@@ -23,5 +24,8 @@ export function transformPriceQueryResponse(
         ]),
         dateNumeric: parse(responseItem.date).getTime()
       } as PriceQuery)
-  );
+  ).filter(item => {
+    const dateTemp = moment(item.date);
+    return (dateTemp.isBetween(startDate, endDate, 'day', '[]'));
+  });
 }
