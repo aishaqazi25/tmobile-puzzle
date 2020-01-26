@@ -43,8 +43,18 @@ A proxy has been set up in `stocks` to proxy calls to `locahost:3333` which is t
 Please provide a short code review of the base `master` branch:
 
 1. What is done well?
+- The project is built on an NX workspace which makes the application better organized.  
+  It also enables monorepo style development and thus code can be shared between applications/projects.
+- I like that you need to test/build only the code that has been affected or changed.
+- Test cases are implemented using Jest which makes them run so much faster. 
 2. What would you change?
+ I would 
+    - Fix the test cases and errors ( which I've done as part of this PR )
+    - Remove ununsed imports and add interfaces instead of using type "any" (which I've also done)
 3. Are there any code smells or problematic implementations?
+- The test cases were failing - which I have fixed. There were imports/providers missing in the files. In the app component spec file, there were test cases written for code that was not present. I have added that code.
+- The chart component was not loading . I've fixed this.
+- There were unused imports which I have removed.
 
 > Make a PR to fix at least one of the issues that you identify
 
