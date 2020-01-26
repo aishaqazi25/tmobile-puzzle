@@ -3,6 +3,7 @@
  * This is only a minimal backend to get started.
  **/
 import { Server } from 'hapi';
+import { stockPlugin } from './plugin/stocks-plugin';
 
 const init = async () => {
   const server = new Server({
@@ -10,15 +11,7 @@ const init = async () => {
     host: 'localhost'
   });
 
-  server.route({
-    method: 'GET',
-    path: '/',
-    handler: (request, h) => {
-      return {
-        hello: 'world'
-      };
-    }
-  });
+  await server.register(stockPlugin);
 
   await server.start();
   console.log('Server running on %s', server.info.uri);
